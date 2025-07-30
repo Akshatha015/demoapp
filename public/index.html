@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Utility Checker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    .content h2 {
+      margin: 0 0 10px;
+      color: #34495e;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    input[type="button"] {
+      background: linear-gradient(to right, #36d1dc, #5b86e5);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    input[type="button"]:hover {
+      background: linear-gradient(to right, #5b86e5, #36d1dc);
+      transform: scale(1.05);
+    }
+
+    .output {
+      margin-top: 10px;
+      color: #2d3436;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #2c3e50;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Number Utility Checker</h1>
+
+    <!-- Palindrome -->
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/4746/4746191.png" alt="Palindrome Icon">
+      <div class="content">
+        <h2>Palindrome Checker</h2>
+        <input type="text" id="palindromeInput" placeholder="Enter a number">
+        <input type="button" value="Check Palindrome" onclick="checkNumber()">
+        <p class="output" id="palindromeResult"></p>
+      </div>
+    </div>
+
+    <!-- Fibonacci -->
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/842/842678.png" alt="Fibonacci Icon">
+      <div class="content">
+        <h2>Fibonacci Generator</h2>
+        <input type="text" id="fibonacciInput" placeholder="Enter how many terms">
+        <input type="button" value="Generate Fibonacci" onclick="checkNumber1()">
+        <p class="output" id="fibonacciResult"></p>
+      </div>
+    </div>
+
+    <!-- Factorial -->
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3146/3146843.png" alt="Factorial Icon">
+      <div class="content">
+        <h2>Factorial Calculator</h2>
+        <input type="text" id="factorialInput" placeholder="Enter a number">
+        <input type="button" value="Calculate Factorial" onclick="checkNumber2()">
+        <p class="output" id="factorialResult"></p>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 | Built by Akshatha T
+    </div>
+  </div>
+
+  <script>
+    function checkNumber() {
+      const input = document.getElementById('palindromeInput').value;
+      const result = document.getElementById('palindromeResult');
+      if (!input) {
+        result.textContent = "Please enter a number.";
+        return;
+      }
+      const isPalindrome = input === input.split('').reverse().join('');
+      result.textContent = isPalindrome ? "✅ It is a palindrome!" : "❌ It is not a palindrome.";
+    }
+
+    function checkNumber1() {
+      const input = parseInt(document.getElementById('fibonacciInput').value);
+      const result = document.getElementById('fibonacciResult');
+      if (isNaN(input) || input <= 0) {
+        result.textContent = "Please enter a valid positive number.";
+        return;
+      }
+      let a = 0, b = 1, c;
+      let output = [a];
+      if (input > 1) output.push(b);
+      for (let i = 2; i < input; i++) {
+        c = a + b;
+        output.push(c);
+        a = b;
+        b = c;
+      }
+      result.textContent = "Fibonacci series: " + output.join(", ");
+    }
+
+    function checkNumber2() {
+      const input = parseInt(document.getElementById('factorialInput').value);
+      const result = document.getElementById('factorialResult');
+      if (isNaN(input) || input < 0) {
+        result.textContent = "Please enter a non-negative number.";
+        return;
+      }
+      let factorial = 1;
+      for (let i = 1; i <= input; i++) {
+        factorial *= i;
+      }
+      result.textContent = "Factorial of " + input + " is: " + factorial;
+    }
+  </script>
+
+</body>
+</html>
